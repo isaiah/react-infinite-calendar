@@ -24,6 +24,18 @@ addDecorator(CenterDecorator);
 
 const today = new Date();
 
+storiesOf('Blacklane', module)
+  .add('Blacklane', () => (
+    <InfiniteCalendar
+      displayOptions={{
+        showHeader: false,
+        showWeekdays: false,
+        showTodayHelper: false,
+        showOverlay: false,
+      }}
+    />
+  ));
+
 storiesOf('Basic settings', module)
   .add('Default Configuration', () => <InfiniteCalendar />)
   .add('Initially Selected Date', () => <InfiniteCalendar selected={addDays(today, 5)} />)

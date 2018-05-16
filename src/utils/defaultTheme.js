@@ -6,11 +6,11 @@ module.exports = {
     color: '#FFF',
   },
   headerColor: '#448AFF',
-  selectionColor: '#559FFF',
+  selectionColor: '#168ccc',
   textColor: {
     active: '#FFF',
     default: '#333',
   },
-  todayColor: '#FFA726',
+  todayColor: '#fff',
   weekdayColor: '#559FFF',
 };
