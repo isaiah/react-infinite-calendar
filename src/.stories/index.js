@@ -29,7 +29,7 @@ storiesOf('Blacklane', module)
     <InfiniteCalendar
       displayOptions={{
         showHeader: false,
-        showWeekdays: false,
+        showWeekdays: true,
         showTodayHelper: false,
         showOverlay: false,
       }}

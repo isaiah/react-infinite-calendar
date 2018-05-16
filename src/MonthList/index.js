@@ -155,16 +155,15 @@ export default class MonthList extends Component {
     let key = `${year}:${month}`;
     let { date, rows } = this.memoize(key);
 
-    const weekdaysStyle = {...style, height: rowHeight,
+    const separatorStyle = {...style, height: rowHeight,
       backgroundColor: "#f0f1f3",
       paddingLeft: "18px",
       fontSize: "18px"
     };
     style = {...style, top: style.top + rowHeight};
-    // <Weekdays weekdays={locale.weekdays} weekStartsOn={locale.weekStartsOn} theme={theme} style={weekdaysStyle}/>
 
     return (<div>
-      <div style={weekdaysStyle}>
+      <div style={separatorStyle}>
           {format(new Date(year, month), 'MMMM YYYY')}
       </div>
       <Month
