@@ -1,6 +1,6 @@
 {
   "name": "@blacklane/react-infinite-calendar",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description":
     "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
   "main": "lib/index.js",
@@ -8,6 +8,7 @@
   "files": ["css", "es", "lib", "umd", "styles.css"],
   "scripts": {
     "build": "yarn run clean && nwb build-react-component --no-vendor",
+    "prepublish": "yarn run build",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "storybook": "start-storybook -p 9001 -c .storybook",
