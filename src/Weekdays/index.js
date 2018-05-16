@@ -10,16 +10,20 @@ export default class Weekdays extends PureComponent {
   };
 
   render() {
-    const {weekdays, weekStartsOn, theme} = this.props;
-    const orderedWeekdays = [...weekdays.slice(weekStartsOn, 7), ...weekdays.slice(0, weekStartsOn)];
+    const {weekdays, weekStartsOn, theme, style} = this.props;
+    const orderedWeekdays = [
+      ...weekdays.slice(weekStartsOn, 7),
+      ...weekdays.slice(0, weekStartsOn),
+    ];
 
     return (
       <ul
         className={styles.root}
         style={{
-          backgroundColor: theme.weekdayColor,
-          color: theme.textColor.active,
+          backgroundColor: theme.weekdayBackground,
+          color: theme.weekdayColor,
           paddingRight: scrollbarSize,
+          ...style,
         }}
         aria-hidden={true}
       >

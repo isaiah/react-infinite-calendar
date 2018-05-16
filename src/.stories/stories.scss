@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
 .center {
   width: 100%;
   height: 100%;
@@ -5,14 +7,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f3f3f3;
+  // background-image: linear-gradient(45deg, #d8d8d8 25%, transparent 25%), linear-gradient(-45deg, #d8d8d8 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #d8d8d8 75%), linear-gradient(-45deg, transparent 75%, #d8d8d8 75%);
+  background-image: linear-gradient(
+      transparent 0px,
+      transparent 2px,
+      rgb(255, 255, 255) 2px,
+      rgb(255, 255, 255) 20px
+    ),
+    linear-gradient(
+      to right,
+      rgb(200, 195, 199) 0px,
+      rgb(200, 195, 199) 2px,
+      rgb(255, 255, 255) 2px,
+      rgb(255, 255, 255) 20px
+    );
+  background-position: 329px -2px;
+  background-size: 20px 20px;
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 
   > label {
     display: block;
     margin: 0 auto;
     margin-bottom: 20px;
     text-align: center;
-    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     color: #888;
     -webkit-font-smoothing: antialiased;
     font-size: 15px;
@@ -29,9 +48,15 @@
 }
 
 :global {
-  html, body, #root {
+  html,
+  body,
+  #root {
     width: 100%;
     height: 100%;
     margin: 0;
+  }
+
+  .Container__root {
+    border: 1px solid #bcb5b9;
   }
 }

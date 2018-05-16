@@ -10,11 +10,13 @@ import {
   animate,
 } from '../utils';
 import parse from 'date-fns/parse';
+import format from 'date-fns/format';
 import startOfMonth from 'date-fns/start_of_month';
 import Month from '../Month';
 import styles from './MonthList.scss';
 
 const AVERAGE_ROWS_PER_MONTH = 5;
+const weeksPerYear = 52.17; //(365 * 4 + 1) / (4 * 7);
 
 /* eslint-disable react/no-deprecated */
 export default class MonthList extends Component {
@@ -60,7 +62,7 @@ export default class MonthList extends Component {
       let {locale: {weekStartsOn}, months, rowHeight} = this.props;
       let {month, year} = months[index];
       let weeks = getWeeksInMonth(month, year, weekStartsOn, index === months.length - 1);
-      let height = weeks * rowHeight;
+      let height = (weeks + 2) * rowHeight;
       this.monthHeights[index] = height;
     }
 
@@ -90,8 +92,10 @@ export default class MonthList extends Component {
   getDateOffset(date) {
     const {min, rowHeight, locale: {weekStartsOn}, height} = this.props;
     const weeks = getWeek(startOfMonth(min), parse(date), weekStartsOn);
+    const months = 12 * weeks / weeksPerYear;
+    const monthRows = 2 * (months - 1);
 
-    return weeks * rowHeight - (height - rowHeight/2) / 2;
+    return (weeks + monthRows) * rowHeight - (height - rowHeight / 2) / 2;
   }
 
   scrollToDate = (date, offset = 0, ...rest) => {
@@ -146,9 +150,18 @@ export default class MonthList extends Component {
     let key = `${year}:${month}`;
     let {date, rows} = this.memoize(key);
 
-    return (
+    const separatorStyle = {...style, height: rowHeight,
+      backgroundColor: '#f0f1f3',
+      paddingLeft: '18px',
+      fontSize: '18px',
+    };
+    style = {...style, top: style.top + rowHeight};
+
+    return (<div key={key}>
+      <div style={separatorStyle}>
+        {format(new Date(year, month), 'MMMM YYYY')}
+      </div>
       <Month
-        key={key}
         selected={selected}
         DayComponent={DayComponent}
         monthDate={date}
@@ -167,7 +180,7 @@ export default class MonthList extends Component {
         passThrough={passThrough}
         {...passThrough.Month}
       />
-    );
+    </div>);
   };
 
   render() {

@@ -1,19 +1,23 @@
 {
-  "name": "react-infinite-calendar",
-  "version": "2.3.1",
-  "description": "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
+  "name": "@blacklane/react-infinite-calendar",
+  "version": "2.3.12",
+  "description":
+    "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": ["css", "es", "lib", "umd", "styles.css"],
   "scripts": {
-    "build": "npm run clean && nwb build-react-component --no-vendor",
+    "build": "yarn run clean && nwb build-react-component --no-vendor",
+    "prepare": "yarn run build",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
-    "lint": "eslint --fix src/**/*.js"
+    "lint": "eslint --fix src/**/*.js",
+    "predeploy": "build-storybook -c .storybook -o build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -54,15 +58,14 @@
     "name": "Clauderic Demers",
     "email": "me@ced.io"
   },
-  "user": "clauderic",
-  "homepage": "https://github.com/clauderic/react-infinite-calendar",
+  "homepage": "https://github.com/blacklane/react-infinite-calendar",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/clauderic/react-infinite-calendar.git"
+    "url": "https://github.com/blacklane/react-infinite-calendar.git"
   },
   "bugs": {
-    "url": "https://github.com/clauderic/react-infinite-calendar/issues"
+    "url": "https://github.com/blacklane/react-infinite-calendar/issues"
   },
   "keywords": [
     "react",
