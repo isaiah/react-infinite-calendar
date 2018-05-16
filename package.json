@@ -1,6 +1,6 @@
 {
   "name": "@blacklane/react-infinite-calendar",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description":
     "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
   "main": "lib/index.js",
@@ -52,15 +52,14 @@
     "name": "Clauderic Demers",
     "email": "me@ced.io"
   },
-  "user": "clauderic",
-  "homepage": "https://github.com/clauderic/react-infinite-calendar",
+  "homepage": "https://github.com/blacklane/react-infinite-calendar",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/clauderic/react-infinite-calendar.git"
+    "url": "https://github.com/blacklane/react-infinite-calendar.git"
   },
   "bugs": {
-    "url": "https://github.com/clauderic/react-infinite-calendar/issues"
+    "url": "https://github.com/blacklane/react-infinite-calendar/issues"
   },
   "keywords": [
     "react",
