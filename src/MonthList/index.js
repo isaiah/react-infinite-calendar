@@ -162,12 +162,11 @@ export default class MonthList extends Component {
     };
     style = {...style, top: style.top + rowHeight};
 
-    return (<div>
+    return (<div key={key}>
       <div style={separatorStyle}>
           {format(new Date(year, month), 'MMMM YYYY')}
       </div>
       <Month
-        key={key}
         selected={selected}
         DayComponent={DayComponent}
         monthDate={date}
