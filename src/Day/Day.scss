@@ -71,7 +71,7 @@
     font-weight: bold;
 
     > span {
-      color: $textColor;
+      color: #000; //$textColor;
     }
 
     &.disabled > span {

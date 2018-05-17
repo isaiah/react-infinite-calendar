@@ -1,40 +1,43 @@
 /* eslint-disable sort-keys */
-import React from 'react';
-import {addDecorator, storiesOf} from '@kadira/storybook';
+import React from "react";
+import { addDecorator, storiesOf } from "@kadira/storybook";
 import InfiniteCalendar, {
   Calendar,
   defaultMultipleDateInterpolation,
   withDateSelection,
   withKeyboardSupport,
   withMultipleDates,
-  withRange,
-} from '../';
-import styles from './stories.scss';
+  withRange
+} from "../";
+import styles from "./stories.scss";
 
 // Date manipulation utils
-import addDays from 'date-fns/add_days';
-import addMonths from 'date-fns/add_months';
-import endOfMonth from 'date-fns/end_of_month';
-import format from 'date-fns/format';
-import isBefore from 'date-fns/is_before';
-import subMonths from 'date-fns/sub_months';
+import addDays from "date-fns/add_days";
+import subDays from "date-fns/sub_days";
+import addMonths from "date-fns/add_months";
+import endOfMonth from "date-fns/end_of_month";
+import format from "date-fns/format";
+import isBefore from "date-fns/is_before";
+import subMonths from "date-fns/sub_months";
 
 const CenterDecorator = story => <div className={styles.center}>{story()}</div>;
 addDecorator(CenterDecorator);
 
 const today = new Date();
 
-storiesOf('Blacklane', module)
-  .add('Blacklane', () => (
-    <InfiniteCalendar
-      displayOptions={{
-        showHeader: false,
-        showWeekdays: true,
-        showTodayHelper: false,
-        showOverlay: false,
-      }}
-    />
-  ));
+storiesOf("Blacklane", module).add("Blacklane", () => (
+  <InfiniteCalendar
+    displayOptions={{
+      showHeader: false,
+      showWeekdays: true,
+      showTodayHelper: false,
+      showOverlay: false
+    }}
+    min={subMonths(today, 1)} // Minimum month to render
+    minDate={subDays(today, 1)} // Minimum selectable date
+    selected={addDays(today, 1)}
+  />
+));
 
 // storiesOf('Basic settings', module)
 //   .add('Default Configuration', () => <InfiniteCalendar />)
