@@ -1,15 +1,15 @@
-import {configure} from '@kadira/storybook';
-import {setOptions} from '@kadira/storybook-addon-options';
+import { configure } from "@storybook/react";
+import { setOptions } from "@storybook/addon-options";
 
 setOptions({
-  name: 'INFINITE CALENDAR',
-  url: 'https://github.com/blacklane/react-infinite-calendar',
-  goFullScreen: false,
-  showLeftPanel: true,
-  showDownPanel: false,
+  name: "INFINITE CALENDAR",
+  url: "https://github.com/blacklane/react-infinite-calendar",
+  goFullScreen: true,
+  showStoriesPanel: false,
+  showAddonPanel: false,
   showSearchBox: false,
-  downPanelInRight: false,
-  sortStoriesByKind: false,
+  addonPanelInRight: false,
+  sortStoriesByKind: false
 });
 
-configure(() => require('../src/.stories/index.js'), module);
+configure(() => require("../src/.stories/index.js"), module);

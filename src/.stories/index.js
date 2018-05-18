@@ -1,6 +1,8 @@
 /* eslint-disable sort-keys */
 import React from "react";
-import { addDecorator, storiesOf } from "@kadira/storybook";
+import { storiesOf, addDecorator } from "@storybook/react";
+// import { withViewport } from '@storybook/addon-viewport';
+
 import InfiniteCalendar, {
   Calendar,
   defaultMultipleDateInterpolation,
@@ -23,22 +25,26 @@ import subMonths from "date-fns/sub_months";
 
 const CenterDecorator = story => <div className={styles.center}>{story()}</div>;
 addDecorator(CenterDecorator);
+// addDecorator(withViewport)
 
 const today = new Date();
 
-storiesOf("Blacklane", module).add("Blacklane", () => (
-  <InfiniteCalendar
-    displayOptions={{
-      showHeader: false,
-      showWeekdays: true,
-      showTodayHelper: false,
-      showOverlay: false
-    }}
-    min={startOfMonth(today)} // Minimum month to render
-    minDate={today} // Minimum selectable date
-    selected={addDays(today, 1)}
-  />
-));
+storiesOf("Blacklane", module).add("Blacklane", () => {
+  let selected = addDays(today, 1);
+  return (
+    <InfiniteCalendar
+      displayOptions={{
+        showHeader: false,
+        showWeekdays: true,
+        showTodayHelper: false,
+        showOverlay: false
+      }}
+      min={startOfMonth(today)} // Minimum month to render
+      minDate={today} // Minimum selectable date
+      selected={selected}
+    />
+  );
+});
 
 // storiesOf('Basic settings', module)
 //   .add('Default Configuration', () => <InfiniteCalendar />)
