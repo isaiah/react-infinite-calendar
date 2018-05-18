@@ -16,6 +16,7 @@ import addDays from "date-fns/add_days";
 import subDays from "date-fns/sub_days";
 import addMonths from "date-fns/add_months";
 import endOfMonth from "date-fns/end_of_month";
+import startOfMonth from "date-fns/start_of_month";
 import format from "date-fns/format";
 import isBefore from "date-fns/is_before";
 import subMonths from "date-fns/sub_months";
@@ -33,8 +34,8 @@ storiesOf("Blacklane", module).add("Blacklane", () => (
       showTodayHelper: false,
       showOverlay: false
     }}
-    min={subMonths(today, 1)} // Minimum month to render
-    minDate={subDays(today, 1)} // Minimum selectable date
+    min={startOfMonth(today)} // Minimum month to render
+    minDate={today} // Minimum selectable date
     selected={addDays(today, 1)}
   />
 ));
