@@ -40,6 +40,9 @@ storiesOf('Blacklane', module).add('Blacklane', () => {
       min={startOfMonth(today)} // Minimum month to render
       minDate={today} // Minimum selectable date
       selected={selected}
+      locale={{
+        weekStartsOn: 1,
+      }}
     />
   );
 });

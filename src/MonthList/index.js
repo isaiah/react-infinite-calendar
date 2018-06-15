@@ -5,18 +5,16 @@ import classNames from 'classnames';
 import {
   emptyFn,
   getMonth,
-  getWeek,
   getWeeksInMonth,
   animate,
 } from '../utils';
-import parse from 'date-fns/parse';
 import format from 'date-fns/format';
-import startOfMonth from 'date-fns/start_of_month';
+import getM from 'date-fns/get_month';
+import getYear from 'date-fns/get_year';
 import Month from '../Month';
 import styles from './MonthList.scss';
 
 const AVERAGE_ROWS_PER_MONTH = 5;
-const weeksPerYear = 52.17; //(365 * 4 + 1) / (4 * 7);
 
 /* eslint-disable react/no-deprecated */
 export default class MonthList extends Component {
@@ -39,9 +37,6 @@ export default class MonthList extends Component {
     theme: PropTypes.object,
     today: PropTypes.instanceOf(Date),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  };
-  state = {
-    scrollTop: this.getDateOffset(this.props.scrollDate),
   };
   cache = {};
   memoize = function(param) {
@@ -69,6 +64,10 @@ export default class MonthList extends Component {
     return this.monthHeights[index];
   };
 
+  state = {
+    scrollTop: this.getDateOffset(this.props.scrollDate),
+  };
+
   componentDidMount() {
     this.scrollEl = this.VirtualList.rootNode;
   }
@@ -90,12 +89,14 @@ export default class MonthList extends Component {
   }
 
   getDateOffset(date) {
-    const {min, rowHeight, locale: {weekStartsOn}, height} = this.props;
-    const weeks = getWeek(startOfMonth(min), parse(date), weekStartsOn);
-    const months = 12 * weeks / weeksPerYear;
-    const monthRows = 2 * (months - 1);
-
-    return (weeks + monthRows) * rowHeight - (height - rowHeight / 2) / 2;
+    const {min} = this.props;
+    const start = getYear(min) * 12 + getM(min);
+    const end = getYear(date) * 12 + getM(date);
+    let result = 0;
+    for (let i = 0; i < end - start; i++) {
+      result += this.getMonthHeight(i);
+    }
+    return result;
   }
 
   scrollToDate = (date, offset = 0, ...rest) => {
