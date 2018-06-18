@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import Calendar from './Calendar';
 import {withDateSelection} from './Calendar/withDateSelection';
 
-export {default as Calendar} from './Calendar';
-export {withDateSelection} from './Calendar/withDateSelection';
-export {withKeyboardSupport} from './Calendar/withKeyboardSupport';
-export {withMultipleDates, defaultMultipleDateInterpolation} from './Calendar/withMultipleDates';
-export {withRange, EVENT_TYPE} from './Calendar/withRange';
+// export {default as Calendar} from './Calendar';
+// export {withDateSelection} from './Calendar/withDateSelection';
+// export {withKeyboardSupport} from './Calendar/withKeyboardSupport';
+// export {withMultipleDates, defaultMultipleDateInterpolation} from './Calendar/withMultipleDates';
+// export {withRange, EVENT_TYPE} from './Calendar/withRange';
 
 /*
  * By default, Calendar is a controlled component.
