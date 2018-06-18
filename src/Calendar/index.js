@@ -6,7 +6,7 @@ import {defaultProps} from 'recompose';
 import defaultDisplayOptions from '../utils/defaultDisplayOptions';
 import defaultLocale from '../utils/defaultLocale';
 import defaultTheme from '../utils/defaultTheme';
-import {DIRECTION_UP, DIRECTION_DOWN} from '../Today';
+import {DIRECTION_UP, DIRECTION_DOWN} from '../Today/constants';
 import MonthList from '../MonthList';
 import Weekdays from '../Weekdays';
 import Day from '../Day';
