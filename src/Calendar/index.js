@@ -6,11 +6,9 @@ import {defaultProps} from 'recompose';
 import defaultDisplayOptions from '../utils/defaultDisplayOptions';
 import defaultLocale from '../utils/defaultLocale';
 import defaultTheme from '../utils/defaultTheme';
-import Today, {DIRECTION_UP, DIRECTION_DOWN} from '../Today';
-import Header from '../Header';
+import {DIRECTION_UP, DIRECTION_DOWN} from '../Today';
 import MonthList from '../MonthList';
 import Weekdays from '../Weekdays';
-import Years from '../Years';
 import Day from '../Day';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
@@ -26,7 +24,7 @@ export const withDefaultProps = defaultProps({
   DayComponent: Day,
   display: 'days',
   displayOptions: {},
-  HeaderComponent: Header,
+  HeaderComponent: () => {},
   height: 500,
   keyboardSupport: true,
   max: new Date(2050, 11, 31),
@@ -41,7 +39,7 @@ export const withDefaultProps = defaultProps({
   rowHeight: 56,
   tabIndex: 1,
   width: 400,
-  YearsComponent: Years,
+  YearsComponent: () => {},
 });
 
 /* eslint-disable react/no-deprecated */
@@ -342,15 +340,6 @@ export default class Calendar extends Component {
             <Weekdays weekdays={locale.weekdays} weekStartsOn={locale.weekStartsOn} theme={theme} />
           }
           <div className={styles.container.listWrapper}>
-            {showTodayHelper &&
-              <Today
-                scrollToDate={this.scrollToDate}
-                show={showToday}
-                today={today}
-                theme={theme}
-                todayLabel={locale.todayLabel.long}
-              />
-            }
             <MonthList
               ref={instance => {
                 this._MonthList = instance;
