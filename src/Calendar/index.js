@@ -6,7 +6,6 @@ import {defaultProps} from 'recompose';
 import defaultDisplayOptions from '../utils/defaultDisplayOptions';
 import defaultLocale from '../utils/defaultLocale';
 import defaultTheme from '../utils/defaultTheme';
-import {DIRECTION_UP, DIRECTION_DOWN} from '../Today/constants';
 import MonthList from '../MonthList';
 import Weekdays from '../Weekdays';
 import Day from '../Day';
@@ -207,7 +206,7 @@ export default class Calendar extends Component {
   handleScroll = (scrollTop, e) => {
     const {onScroll, rowHeight} = this.props;
     const {isScrolling} = this.state;
-    const {showTodayHelper, showOverlay} = this.getDisplayOptions();
+    const {showOverlay} = this.getDisplayOptions();
     const scrollSpeed = this.scrollSpeed = Math.abs(this.getScrollSpeed(scrollTop));
     this.scrollTop = scrollTop;
 
@@ -218,59 +217,19 @@ export default class Calendar extends Component {
       });
     }
 
-    if (showTodayHelper) {
-      this.updateTodayHelperPosition(scrollSpeed);
-    }
-
     onScroll(scrollTop, e);
     this.handleScrollEnd();
   };
   handleScrollEnd = debounce(() => {
     const {onScrollEnd} = this.props;
     const {isScrolling} = this.state;
-    const {showTodayHelper} = this.getDisplayOptions();
 
     if (isScrolling) {
       this.setState({isScrolling: false});
     }
 
-    if (showTodayHelper) {
-      this.updateTodayHelperPosition(0);
-    }
-
     onScrollEnd(this.scrollTop);
   }, 150);
-  updateTodayHelperPosition = (scrollSpeed) => {
-    const today = this.today;
-    const scrollTop = this.scrollTop;
-    const {showToday} = this.state;
-    const {height, rowHeight} = this.props;
-    const {todayHelperRowOffset} = this.getDisplayOptions();
-    let newState;
-
-    if (!this._todayOffset) {
-      this._todayOffset = this.getDateOffset(today);
-    }
-
-    // Today is above the fold
-    if (scrollTop >= this._todayOffset + (height - rowHeight) / 2 + rowHeight * todayHelperRowOffset) {
-      if (showToday !== DIRECTION_UP) newState = DIRECTION_UP;
-    }
-    // Today is below the fold
-    else if (scrollTop <= this._todayOffset - height / 2 - rowHeight * (todayHelperRowOffset + 1)) {
-      if (showToday !== DIRECTION_DOWN) newState = DIRECTION_DOWN;
-    } else if (showToday && scrollSpeed <= 1) {
-      newState = false;
-    }
-
-    if (scrollTop === 0) {
-      newState = false;
-    }
-
-    if (newState != null) {
-      this.setState({showToday: newState});
-    }
-  };
   setDisplay = (display) => {
     this.setState({display});
   }
@@ -298,10 +257,9 @@ export default class Calendar extends Component {
       showHeader,
       showMonthsForYears,
       showOverlay,
-      showTodayHelper,
       showWeekdays,
     } = this.getDisplayOptions();
-    const {display, isScrolling, showToday} = this.state;
+    const {display, isScrolling} = this.state;
     const disabledDates = this.getDisabledDates(this.props.disabledDates);
     const locale = this.getLocale();
     const theme = this.getTheme();
