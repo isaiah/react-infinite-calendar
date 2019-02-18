@@ -160,7 +160,7 @@ export default class MonthList extends Component {
 
     return (<div key={key}>
       <div style={separatorStyle}>
-        {format(new Date(year, month), 'MMMM YYYY')}
+        {format(new Date(year, month), 'MMM YYYY', {locale: locale.locale})}
       </div>
       <Month
         selected={selected}
